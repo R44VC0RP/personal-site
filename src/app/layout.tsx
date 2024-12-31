@@ -5,6 +5,9 @@ import "./globals.css";
 import { HardDriveDownload } from "lucide-react";
 import { GitHub } from "./icons";
 import Image from "next/image";
+import LightChromeButton, { DarkChromeButton } from "@/components/chrome-button";
+import LightChromeCard from "@/components/chrome-card";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -59,6 +62,7 @@ export default function RootLayout({
             {children}
           </div>
         </main>
+        <Toaster />
       </body>
     </html>
   );

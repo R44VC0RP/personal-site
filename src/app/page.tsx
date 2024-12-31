@@ -6,6 +6,8 @@ import { HoverCard } from "@radix-ui/react-hover-card";
 import { HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { HardDriveDownload } from "lucide-react";
 import Home from "./home";
+import ChromeCard, { DarkChromeCard } from "@/components/chrome-card";
+import { DarkChromeButton } from "@/components/chrome-button";
 
 export const metadata: Metadata = {
   title: "Ryan Vogel",
@@ -43,19 +45,15 @@ export default function Page() {
       <div className="flex flex-row justify-center w-full py-4">
 
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center w-full">
-
           {funActions.map((action, index) => (
             <a href={action.url} target={action.url.includes("https") ? "_blank" : "_self"} key={index}>
-              <div
+              <DarkChromeCard
                 key={index}
-                className="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-md text-center w-full max-w-sm
-                transition-all duration-300 ease-out
-                hover:bg-white/20 hover:border-white/30 hover:scale-105 hover:shadow-lg hover:shadow-white/10
-                active:scale-95 active:bg-white/15 cursor-pointer"
+                className="transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg hover:shadow-white/10 active:scale-95"
               >
                 <h3 className="font-bold text-lg">{action.title}</h3>
                 <p className="text-neutral-300">{action.description}</p>
-              </div>
+              </DarkChromeCard>
             </a>
           ))}
         </section>
