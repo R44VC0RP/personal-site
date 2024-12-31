@@ -8,6 +8,10 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+body {
+  font-family: "Apfel Grotezk";
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -15,7 +19,6 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-
 
 
 @tailwind base;
@@ -92,5 +95,10 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 }

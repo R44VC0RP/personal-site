@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "@fontsource/apfel-grotezk"; // Defaults to weight 400
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -15,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark antialiased">
       <body className={inter.className}>{children}</body>
     </html>
   );

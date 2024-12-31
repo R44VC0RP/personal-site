@@ -1,245 +1,100 @@
 import { YouTubeEmbed } from "@next/third-parties/google";
 import { GitHub, Twitter } from "./icons";
 import { Metadata } from "next";
+import Image from "next/image";
+import { HoverCard } from "@radix-ui/react-hover-card";
+import { HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { HardDriveDownload } from "lucide-react";
+import Home from "./home";
 
 export const metadata: Metadata = {
-  title: "Rhys Sullivan",
-  description: "Portfolio website for Rhys Sullivan, Product Engineer",
+  title: "Ryan Vogel",
+  description: "Portfolio website for Ryan Vogel, Software Engineer",
 };
 
-type CareerItem = {
-  company: React.ReactNode;
-  title: React.ReactNode;
-  product: React.ReactNode;
-  date: React.ReactNode;
-  description: React.ReactNode;
-};
-const carerItems: CareerItem[] = [
-  {
-    company: "Microsoft",
-    date: "August 2023 - Present",
-    product: "Teams",
-    description: "",
-    title: "Software Engineer",
-  },
-  {
-    company: "Microsoft",
-    date: "May 2022 - August 2022",
-    product: "Teams",
-    description: "",
-    title: "Software Engineer Intern",
-  },
-  {
-    company: "Raven Software",
-    date: "May 2021 - August 2021",
-    product: "Warzone",
-    description: "",
-    title: "Gameplay Programmer Intern",
-  },
-  {
-    company: "Epic Games",
-    date: "May 2020 - August 2020",
-    product: "Fortnite",
-    description: "",
-    title: "Gameplay Programmer Optimization Intern",
-  },
-];
-
-type ProjectItem = {
-  name: React.ReactNode;
-  description: React.ReactNode;
-  date: React.ReactNode;
+type FunActions = {
+  title: string;
+  description: string;
   url: string;
 };
 
-const projectItems: ProjectItem[] = [
+const funActions: FunActions[] = [
   {
-    name: "Answer Overflow",
-    description:
-      "Open source webpages for Discord forum channels. Bootstrapped to 350k MAU, built with Next.js, TypeScript, and Turborepo, tRPC, and Drizzle.",
-    url: "https://www.answeroverflow.com",
-    date: "January 2022 - Present",
+    title: "Risky Fridays",
+    description: "How often do you push to prod on Fridays?",
+    url: "/riskyfridays",
   },
   {
-    name: "Typelytics",
-    description:
-      "Typescript library for analytics querying & rendering of PostHog data",
-    url: "https://typelytics.rhyssul.com",
-    date: "January 2024 - Present",
-  },
-];
-
-type Misc = {
-  name: string;
-  description: string;
-  date: string;
-  teamSize: string;
-  duration: string;
-  videoid: string;
-};
-
-const misc: Misc[] = [
-  {
-    name: "Shelf Life",
-    description:
-      " iOS / Android app built with React Native to digitize a pantry. Used Python, Flask, and SQL for the backend. App tracks nutritional information, expiration dates, budget, and suggests recipes",
-    teamSize: "4",
-    duration: "2 months",
-    videoid: "kMtXJYT95oc",
-    date: "February - April 2021",
+    title: "QuickPic",
+    description: "Quickly mutate images and other media",
+    url: "https://quickpic.t3.gg",
   },
   {
-    name: "Into the Depths",
-    description:
-      "Singleplayer VR game where you pilot a submarine and fight a flying water dragon. Submarine had missiles and sonar for detecting floating mines.",
-    date: "December 2020",
-    duration: "7 days",
-    teamSize: "5",
-    videoid: "UQY_y9FIhzM",
-  },
-  {
-    name: "Ground Control",
-    date: "December 2019",
-    description: `2 player game made for the theme "Down To Earth". One player is in a Spaceship trying to return to earth and survive reentry as their ship falls apart. The other player is in ground control telling the player in the Spaceship where their issues are and how to fix them.`,
-    duration: "7 days",
-    teamSize: "5",
-    videoid: "lJHS-Mf3bMo",
-  },
-  {
-    name: "Busy Bee Movers",
-    date: "ArtCenter GameJam 2021",
-    description:
-      "2 Player LAN / Online Co-Op game. Both players control one character, if they move together they go full speed, if one person is only moving they go half speed, and if they do opposite inputs they don't move at all.",
-    duration: "48 hours",
-    teamSize: "4",
-    videoid: "du1VECmZ8L8",
-  },
-  {
-    date: "January - June 2019",
-    description:
-      "Virtual Reality Kart Racer that I made to learn VR, C++, and Networking",
-    duration: "6 months",
-    name: "VR Kart Racer",
-    teamSize: "1",
-    videoid: "LZSft4THWVQ",
-  },
-  {
-    name: "VR Spin Bike Project",
-    date: "April 2020",
-    description:
-      "VR project running on the Oculus Quest that converts spin bike pedaling into in-game input. You race 60 other bikes in a lap around an island.",
-    duration: "2 weeks",
-    teamSize: "1",
-    videoid: "E6VWXjUquZo",
+    title: "Coolors",
+    description: "Generate color palettes for your projects",
+    url: "https://coolors.co",
   },
 ];
 
-export default function Home() {
+export default function Page() {
   return (
-    <main className="flex text-white bg-zinc-950 min-h-screen flex-col items-center min-w-full p-4">
+    <main className="flex text-white min-h-screen flex-col items-center min-w-full p-4 bg-gradient-to-r from-[#8458B3] via-[#D0BDF4] to-[#A0D2EB] relative isolate">
+      <div className="absolute inset-0 -z-10 h-full w-full bg-zinc-950/90">
+        <div className="absolute h-full w-full bg-[url('/images/noise-light.png')] [mask-image:radial-gradient(farthest-side_at_top,white,transparent)] opacity-100" />
+      </div>
       <div className="max-w-3xl w-full ">
         <section className="py-4 sm:py-10 flex flex-row justify-between">
-          <div>
-            <h1 className="font-bold text-xl p-0 m-0 ">Rhys Sullivan</h1>
-            <span className="text-neutral-200 p-0 m-0">Software Engineer</span>
+          <div className="flex flex-row items-center">
+            <Image src="/images/rlogo.png" alt="Ryan Vogel" width={30} height={30} className="mr-2" />
+            <div className="flex flex-col">
+              <h1 className="font-bold text-xl p-0 m-0 ">Ryan Vogel</h1>
+              <span className="text-neutral-200 p-0 m-0">Founder, Software Engineer & Integration Specialist</span>
+            </div>
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-4 items-center">
             <a
-              href="https://github.com/rhyssullivan"
+              href="https://github.com/R44VC0RP"
               target="_blank"
               className="fill-current hover:fill-neutral-300"
-              aria-label="Twitter"
+              aria-label="GitHub"
             >
               <GitHub />
             </a>
             <a
-              href="https://twitter.com/rhyssullivan"
+              href="https://x.com/ryandavogel"
               target="_blank"
               className="fill-current hover:fill-neutral-300"
               aria-label="Twitter"
             >
-              <Twitter />
+              <Image src="/images/x-logo.png" alt="X Logo" width={24} height={24} />
+            </a>
+            <a className="fill-current hover:fill-neutral-300 inline-block" href="/resume.pdf" target="_blank">
+              <HardDriveDownload height={24} width={24} />
             </a>
           </div>
         </section>
-        <section className="text-left w-full flex gap-4 flex-col">
-          <h2 className="text-xl font-bold">Career</h2>
-          {carerItems.map((item, index) => (
-            <div key={index}>
-              <div>
-                <div className="min-w-full flex-row justify-between hidden sm:flex">
-                  <div className="flex flew-row">
-                    <h3 className="font-bold">{item.company}</h3>
-                    <span className="mx-2 font-bold">-</span>
-                    <span className="font-bold">{item.product}</span>
-                    <i className="mx-2">{item.title}</i>
-                  </div>
-                  <div>
-                    <span>{item.date}</span>
-                  </div>
+        <h2 className="text-xl font-bold ">My Tools</h2>
+        <div className="flex flex-row justify-center w-full py-4">
+
+          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center w-full">
+
+            {funActions.map((action, index) => (
+              <a href={action.url} target="_blank" key={index}>
+                <div
+                  key={index}
+                  className="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-md text-center w-full max-w-sm
+                transition-all duration-300 ease-out
+                hover:bg-white/20 hover:border-white/30 hover:scale-105 hover:shadow-lg hover:shadow-white/10
+                active:scale-95 active:bg-white/15 cursor-pointer"
+                >
+                  <h3 className="font-bold text-lg">{action.title}</h3>
+                  <p className="text-neutral-300">{action.description}</p>
                 </div>
-                <span>{item.description}</span>
-                <div className="flex flex-col sm:hidden justify-start">
-                  <div className="flex flew-row justify-start">
-                    <h3 className="font-bold">{item.company}</h3>
-                    <span className="mx-2 font-bold">-</span>
-                    <span className="font-bold">{item.product}</span>
-                  </div>
-                  <i>{item.title}</i>
-                  <div>
-                    <span>{item.date}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </section>
-        <section className="text-left w-full flex gap-4 flex-col mt-4 py-4 border-t-2 border-zinc-800 rounded-e-md">
-          <h2 className="text-xl font-bold">Active Projects</h2>
-          {projectItems.map((item, index) => (
-            <div key={index} className="py-4">
-              <div className="min-w-full flex flex-row justify-between">
-                <div className="flex flew-row">
-                  <a href={item.url} target="_blank">
-                    <h3
-                      className="font-bold
-                    hover:text-neutral-300
-                    hover:underline
-                    "
-                    >
-                      {item.name}
-                    </h3>
-                  </a>
-                </div>
-                <div>
-                  <span>{item.date}</span>
-                </div>
-              </div>
-              <span>{item.description}</span>
-            </div>
-          ))}
-        </section>
-        <section className="text-left w-full flex gap-4 flex-col mt-4 py-4 border-t-2 border-zinc-800 rounded-e-md">
-          <h2 className="text-xl font-bold">Past Projects</h2>
-          {misc.map((item, index) => (
-            <div key={index} className="pb-8 border-b-2 border-zinc-900">
-              <div className="min-w-full flex flex-row justify-between">
-                <div className="flex flew-row">
-                  <h3 className="font-bold">{item.name}</h3>
-                </div>
-                <div>
-                  <span>{item.date}</span>
-                </div>
-              </div>
-              <div className="flex flex-col gap-4">
-                <span>{item.description}</span>
-                <span>Team Size: {item.teamSize}</span>
-                <span>Duration: {item.duration}</span>
-              </div>
-              <YouTubeEmbed videoid={item.videoid} />
-            </div>
-          ))}
-        </section>
+              </a>
+            ))}
+          </section>
+        </div>
+        <Home />
       </div>
     </main>
   );
