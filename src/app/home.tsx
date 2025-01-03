@@ -181,7 +181,9 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex flex-col items-center my-4">
-                <YouTubeEmbed videoid={item.videoid} width={600} />
+                <div className="w-[300px] md:w-[600px]">
+                  <YouTubeEmbed videoid={item.videoid} />
+                </div>
               </div>
             </div>
           ))}

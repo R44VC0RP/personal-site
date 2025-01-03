@@ -30,6 +30,7 @@ export default function RootLayout({
           </div>
           <div className="max-w-3xl w-full ">
             <section className="py-4 sm:py-10 flex flex-row justify-between">
+              <a href="/">
               <div className="flex flex-row items-center">
                 <Image src="/images/rlogo.png" alt="Ryan Vogel" width={30} height={30} className="mr-2" />
                 <div className="flex flex-col">
@@ -37,6 +38,7 @@ export default function RootLayout({
                   <span className="text-neutral-200 p-0 m-0">Founder, Software Engineer & Integration Specialist</span>
                 </div>
               </div>
+              </a>
               <div className="flex gap-4 items-center">
                 <a
                   href="https://github.com/R44VC0RP"

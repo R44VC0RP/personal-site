@@ -46,10 +46,10 @@ export default function Page() {
 
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center w-full">
           {funActions.map((action, index) => (
-            <a href={action.url} target={action.url.includes("https") ? "_blank" : "_self"} key={index}>
+            <a href={action.url} target={action.url.includes("https") ? "_blank" : "_self"} key={index} className="w-full">
               <DarkChromeCard
                 key={index}
-                className="transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg hover:shadow-white/10 active:scale-95"
+                className="w-full transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg hover:shadow-white/10 active:scale-95"
               >
                 <h3 className="font-bold text-lg">{action.title}</h3>
                 <p className="text-neutral-300">{action.description}</p>
