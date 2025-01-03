@@ -9,6 +9,8 @@ import { GlassMorphicCard } from "@/components/GlassMorphicCard";
 import { Crown, Medal } from "lucide-react";
 import { createInvestment, getTopInvestors } from "@/actions/investments";
 import { Investment } from "@prisma/client";
+
+
 export default function Invest() {
     const [username, setUsername] = useState("");
     const [amount, setAmount] = useState("");
