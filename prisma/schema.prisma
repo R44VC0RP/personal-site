@@ -20,3 +20,10 @@ model Investment {
   username String
   createdAt DateTime @default(now())
 }
+
+model RiskyFriday {
+  id String @id @default(cuid())
+  username String
+  riskLevel Float
+  createdAt DateTime @default(now())
+}
