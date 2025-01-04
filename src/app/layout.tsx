@@ -8,6 +8,8 @@ import Image from "next/image";
 import LightChromeButton, { DarkChromeButton } from "@/components/chrome-button";
 import LightChromeCard from "@/components/chrome-card";
 import { Toaster } from "@/components/ui/sonner";
+import Script from 'next/script'
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +25,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark antialiased">
-      <body className={inter.className}>
+	<head>
+	<Script
+  defer
+  data-website-id="677960ba98cabf7c02a98635"
+  data-domain="theryanvogel.com"
+  src="https://datafa.st/js/script.js">
+</Script>
+	</head>
+    <body className={inter.className}>
         <main className="flex text-white min-h-screen flex-col items-center min-w-full p-4 bg-gradient-to-r from-[#8458B3] via-[#D0BDF4] to-[#A0D2EB] relative isolate">
           <div className="absolute inset-0 -z-10 h-full w-full bg-zinc-950/90">
             <div className="absolute h-full w-full bg-[url('/images/noise-light.png')] [mask-image:radial-gradient(farthest-side_at_top,white,transparent)] opacity-100" />
