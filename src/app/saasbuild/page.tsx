@@ -136,7 +136,7 @@ export default function SaaSShowcase() {
                 >
                     <div className="flex flex-col h-full justify-center">
                         <h2 className="text-2xl font-bold text-center mb-4">
-                            Building {quantity} {projectType} in 2024 🎯
+                            Building {quantity} {projectType} in 2025 🎯
                         </h2>
                         {username && (
                             <p className="text-center text-neutral-300 mb-8">(with @{username})</p>
