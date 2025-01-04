@@ -93,6 +93,7 @@ export default function SaaSShowcase() {
     return (
         <div className="max-w-4xl mx-auto space-y-8">
             <h1 className="text-3xl font-bold text-center">Project Showcase Generator</h1>
+            <p className="text-center text-neutral-300 mb-8">Share your projects with the world by filling out the form below and click on each of the projects to upload your images. Then just download the image and share it with the world!</p>
 
             <div className="space-y-4">
                 <Input
