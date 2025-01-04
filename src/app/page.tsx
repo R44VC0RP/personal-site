@@ -33,9 +33,9 @@ const funActions: FunActions[] = [
     url: "/riskyfridays",
   },
   {
-    title: "TagTap",
+    title: "SaaS Showcase",
     description: "Enhance you social sharing identity",
-    url: "/tagtap",
+    url: "/saasbuild",
   },
 ];
 
