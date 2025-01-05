@@ -65,9 +65,6 @@ export async function getRiskLevel(username: string): Promise<GitHubStats> {
             }
             
             page++;
-            
-            // Add a small delay to avoid rate limiting
-            await new Promise(resolve => setTimeout(resolve, 1000));
         }
 
         console.log(`✨ Found ${allCommits.length} total commits`);
