@@ -23,6 +23,10 @@ export type GitHubStats = {
     }[];
 };
 
+async function deleteAllRiskyFridaysLeaderBoardMembers() {
+    await prisma.riskyFriday.deleteMany();
+}
+
 export async function getRiskLevel(username: string): Promise<GitHubStats> {
     console.log(`🔍 Analyzing GitHub stats for user: ${username}`);
     
@@ -71,6 +75,7 @@ export async function getRiskLevel(username: string): Promise<GitHubStats> {
         let riskyCommits = 0;
         let totalCommits = 0;
         let fridayCommits = 0;
+        let riskyFridayCommits = 0;
         let lateNightCommits = 0;
         const analyzedRepos = new Set();
 
@@ -94,7 +99,7 @@ export async function getRiskLevel(username: string): Promise<GitHubStats> {
             if (isProductionBranch) {
                 totalCommits++;
                 if (isFriday && hour >= 17) {
-                    riskyCommits++;
+                    riskyFridayCommits++;
                 }
             }
         }
@@ -103,12 +108,12 @@ export async function getRiskLevel(username: string): Promise<GitHubStats> {
         console.log(`⚠️ Found ${riskyCommits} risky commits`);
 
         // Initialize the commits by day tracking
-        const commitsByDay = new Map<string, { commits: number; riskyCommits: number }>();
+        const commitsByDay = new Map<string, { commits: number; riskyCommits: number, riskyFridayCommits: number }>();
         const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
         
         // Initialize all days with zero
         days.forEach(day => {
-            commitsByDay.set(day, { commits: 0, riskyCommits: 0 });
+            commitsByDay.set(day, { commits: 0, riskyCommits: 0, riskyFridayCommits: 0 });
         });
 
         // Count commits by day
@@ -119,25 +124,56 @@ export async function getRiskLevel(username: string): Promise<GitHubStats> {
             if (dayIndex === -1) dayIndex = 6; // Move Sunday to end
             const dayName = days[dayIndex];
             
+            
             const dayStats = commitsByDay.get(dayName)!;
             dayStats.commits++;
             
+            
             // Consider it risky if it's after work hours
             const hour = commitDate.getHours();
-            if (hour >= 17 || hour <= 5) {
+            // console.log(`🕒 Commit day/time: ${dayName} ${hour}`);
+            // if (hour >= 17 || hour <= 5) {
+            //     dayStats.riskyCommits++;
+            // }
+            if (dayName === 'Friday' && hour >= 17) {
+                dayStats.riskyFridayCommits++;
+            }
+
+            if (hour >= 17) {
                 dayStats.riskyCommits++;
             }
+
+            
+
+            console.log(`🔍 Day stats: ${dayName} - Commits: ${dayStats.commits}, Risky Commits: ${dayStats.riskyCommits}, Risky Friday Commits: ${dayStats.riskyFridayCommits}`);
         }
+
+        
 
         // Convert to array format for the chart
         const commitsByDayArray = days.map(day => ({
             day: day.slice(0, 3), // Abbreviate day names
             commits: commitsByDay.get(day)?.commits || 0,
-            riskyCommits: commitsByDay.get(day)?.riskyCommits || 0
+            riskyCommits: commitsByDay.get(day)?.riskyCommits || 0,
+            riskyFridayCommits: commitsByDay.get(day)?.riskyFridayCommits || 0
         }));
 
+
+        let count_riskyFridayCommits = 0;
+        let count_commits = 0;
+        for (const day of commitsByDayArray) {
+            count_riskyFridayCommits += day.riskyFridayCommits;
+            count_commits += day.commits;
+        }
+
+
+        const riskyFridayPercentage = (count_riskyFridayCommits / count_commits) * 100;
+
+
+        console.log(`🔍 Risky Friday Percentage: ${riskyFridayPercentage.toFixed(1)}%`);
+
         const result = {
-            riskLevel: totalCommits > 0 ? (riskyCommits / totalCommits) * 100 : 0,
+            riskLevel: riskyFridayPercentage,
             totalCommits: allCommits.length,
             riskyCommits,
             fridayPercentage: (fridayCommits / allCommits.length) * 100,
