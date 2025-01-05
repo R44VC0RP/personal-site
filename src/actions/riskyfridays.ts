@@ -60,7 +60,7 @@ export async function getRiskLevel(username: string): Promise<GitHubStats> {
             allCommits = [...allCommits, ...data.items];
             
             // Break if we've fetched all commits or reached 1000 (GitHub API limit)
-            if (data.items.length < perPage || allCommits.length >= 1000) {
+            if (data.items.length < perPage || allCommits.length >= 500) {
                 break;
             }
             
