@@ -28,21 +28,17 @@ async function deleteAllRiskyFridaysLeaderBoardMembers() {
 }
 
 function logMeme(){
-    console.log('💀 Got a 400 error when fetching user repositories');
-    console.log('💯 Successfully received commit data for 23 repositories');
-    console.log('😩 Sending large network payload of 2.3MB for commit analysis');
-    console.log('🤓 Analyzing GitHub stats for user: benmarg - found 847 commits');
-    console.log('🔫 Cleaning up temporary analysis files and caches');
+    console.log('💀💀💀 400 error, shits fucked');
+    console.log('💯💯 ok, data received');
+    console.log('🔑 this part works');
+    console.log('😩 sending large network payload of 2.3MB');
+    console.log('🤓 found the nerds github profile');
+    console.log('🔫 cleaning up');
 }
 
 export async function getRiskLevel(username: string): Promise<GitHubStats> {
     // Log server startup
-    console.log('🚀 Server started at http://localhost:3000');
-    console.error('💀 Got a 400 error when fetching user repositories');
-    console.log('💯 Successfully received commit data for 23 repositories');
-    console.log('😩 Sending large network payload of 2.3MB for commit analysis');
-    console.log('🤓 Analyzing GitHub stats for user: benmarg - found 847 commits');
-    console.log('🔫 Cleaning up temporary analysis files and caches');
+    logMeme();
     
     
     console.log(`🔍 Analyzing GitHub stats for user: ${username}`);
