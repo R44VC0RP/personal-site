@@ -19,7 +19,7 @@ export default function RiskyFridays() {
   const [results, setResults] = useState<GitHubStats | null>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const [topRiskyUsers, setTopRiskyUsers] = useState<RiskyFriday[]>([]);
-
+  const [amountOfRiskyFridays, setAmountOfRiskyFridays] = useState(0);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };
@@ -92,8 +92,9 @@ export default function RiskyFridays() {
 
   const fetchTopRiskyUsers = async () => {
     try {
-      const users = await getTopRiskyUsers();
+      const { users, amountOfRiskyFridays } = await getTopRiskyUsers();
       setTopRiskyUsers(users);
+      setAmountOfRiskyFridays(amountOfRiskyFridays);
     } catch (error) {
       console.error('Failed to fetch top risky users:', error);
     }
@@ -138,7 +139,7 @@ export default function RiskyFridays() {
         {!results && (
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full py-4">
             <GlassMorphicCard className="text-center">
-              <h3 className="text-2xl font-bold text-red-400">34%</h3>
+              <h3 className="text-2xl font-bold text-red-400">{amountOfRiskyFridays}</h3>
               <p className="text-neutral-300">of developers push to prod on Fridays</p>
             </GlassMorphicCard>
 

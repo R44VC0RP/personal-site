@@ -217,9 +217,13 @@ export async function getRiskLevel(username: string): Promise<GitHubStats> {
     }
 }
 
-export async function getTopRiskyUsers(): Promise<RiskyFriday[]> {
-    return await prisma.riskyFriday.findMany({
+export async function getTopRiskyUsers(): Promise<{ users: RiskyFriday[], amountOfRiskyFridays: number }> {
+    const users = await prisma.riskyFriday.findMany({
         orderBy: { riskLevel: 'desc' },
         take: 5
     });
+
+    const amountOfRiskyFridays = await prisma.riskyFriday.count();
+
+    return { users, amountOfRiskyFridays };
 }
