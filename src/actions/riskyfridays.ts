@@ -27,10 +27,18 @@ async function deleteAllRiskyFridaysLeaderBoardMembers() {
     await prisma.riskyFriday.deleteMany();
 }
 
+function logMeme(){
+    console.log('💀 Got a 400 error when fetching user repositories');
+    console.log('💯 Successfully received commit data for 23 repositories');
+    console.log('😩 Sending large network payload of 2.3MB for commit analysis');
+    console.log('🤓 Analyzing GitHub stats for user: benmarg - found 847 commits');
+    console.log('🔫 Cleaning up temporary analysis files and caches');
+}
+
 export async function getRiskLevel(username: string): Promise<GitHubStats> {
     // Log server startup
     console.log('🚀 Server started at http://localhost:3000');
-    console.log('💀 Got a 400 error when fetching user repositories');
+    console.error('💀 Got a 400 error when fetching user repositories');
     console.log('💯 Successfully received commit data for 23 repositories');
     console.log('😩 Sending large network payload of 2.3MB for commit analysis');
     console.log('🤓 Analyzing GitHub stats for user: benmarg - found 847 commits');
