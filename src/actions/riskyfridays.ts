@@ -30,7 +30,6 @@ async function deleteAllRiskyFridaysLeaderBoardMembers() {
 export async function getRiskLevel(username: string): Promise<GitHubStats> {
     // Log server startup
     console.log('🚀 Server started at http://localhost:3000');
-    console.log('💯 System is bussin fr fr');
     console.log('💀 Got a 400 error when fetching user repositories');
     console.log('💯 Successfully received commit data for 23 repositories');
     console.log('😩 Sending large network payload of 2.3MB for commit analysis');
