@@ -42,7 +42,7 @@ const funActions: FunActions[] = [
 export default function Page() {
   return (
     <>
-      <h2 className="text-xl font-bold ">My Tools</h2>
+      {/* <h2 className="text-xl font-bold ">My Tools</h2>
       <div className="flex flex-row justify-center w-full py-4">
 
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center w-full">
@@ -58,7 +58,7 @@ export default function Page() {
             </a>
           ))}
         </section>
-      </div>
+      </div> */}
       <Home />
     </>
   );
