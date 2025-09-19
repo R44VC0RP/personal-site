@@ -95,10 +95,20 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-geist-sans), sans-serif;
+    letter-spacing: -0.04em;
+    
   }
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+  }
+  
+  /* Header styles with Geist SemiBold and -4% letter spacing */
+  h1, h2, h3, h4 {
+    font-family: var(--font-geist-sans), sans-serif;
+    font-weight: 600; /* SemiBold */
+    letter-spacing: -0.04em; /* -4% letter spacing */
   }
 }

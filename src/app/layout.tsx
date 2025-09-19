@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "@fontsource/apfel-grotezk"; // Defaults to weight 400
 import { Inter } from "next/font/google";
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
+
 import "./globals.css";
 import { HardDriveDownload } from "lucide-react";
 import { GitHub } from "./icons";
@@ -34,7 +37,7 @@ export default function RootLayout({
           src="https://datafa.st/js/script.js">
         </Script>
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} ${GeistSans.variable} ${GeistMono.variable}`}>
         <main className="flex text-white min-h-screen flex-col items-center min-w-full p-4 bg-gradient-to-r from-[#8458B3] via-[#D0BDF4] to-[#A0D2EB] relative isolate">
           <div className="absolute inset-0 -z-10 h-full w-full bg-zinc-950/90">
             <div className="absolute h-full w-full bg-[url('/images/noise-light.png')] [mask-image:radial-gradient(farthest-side_at_top,white,transparent)] opacity-100" />

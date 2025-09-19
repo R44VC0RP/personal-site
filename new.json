@@ -1,0 +1,10 @@
+{
+    "mcpServers": {
+      "resend-mcp-remote": {
+        "url": "https://resend.exon.dev/mcp",
+        "headers": {
+          "resend-api-key": "resend-api-key"
+        }
+      }
+    }
+  }

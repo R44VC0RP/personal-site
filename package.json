@@ -20,6 +20,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "dotenv-cli": "^8.0.0",
+    "geist": "^1.5.1",
     "html-to-image": "^1.11.11",
     "lucide-react": "^0.309.0",
     "next": "14.0.4",
