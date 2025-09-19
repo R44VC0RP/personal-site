@@ -11,13 +11,13 @@ export const size = {
 export const contentType = 'image/png';
 
 export default async function Image() {
-  // Fetch Geist fonts from public directory
+  // Fetch Geist fonts from public directory (OTF format)
   const geistSemiBold = fetch(
-    new URL('/Geist-SemiBold.woff2', 'https://ryan.ceo')
+    new URL('/Geist-SemiBold.otf', 'https://ryan.ceo')
   ).then((res) => res.arrayBuffer());
 
   const geistMedium = fetch(
-    new URL('/Geist-Medium.woff2', 'https://ryan.ceo')
+    new URL('/Geist-Medium.otf', 'https://ryan.ceo')
   ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
