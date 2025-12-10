@@ -2,6 +2,8 @@ import { YouTubeEmbed } from "@next/third-parties/google";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 import Image from "next/image";
 import React from "react";
+import { Star } from "lucide-react";
+import TweetVideo from "@/components/TweetVideo";
 
 type CareerItem = {
   company: React.ReactNode;
@@ -9,12 +11,34 @@ type CareerItem = {
   icon_url: React.ReactNode;
   date: React.ReactNode;
   description: React.ReactNode;
+  active?: boolean;
+};
+
+// OpenCode career item - only show after December 25th, 2025
+const showOpenCode = new Date() >= new Date('2025-12-25');
+
+const openCodeItem: CareerItem = {
+  company: "OpenCode",
+  date: "December 2025 - Present",
+  icon_url: "/images/opencode-logo-light.png",
+  description: "Contributing to the open source AI coding agent used by over 400,000 developers monthly. OpenCode helps developers write and run code directly from the terminal with a native TUI, LSP support, multi-session capabilities, and integration with 75+ LLM providers. Working on features, documentation, and community engagement for this privacy-first development tool.",
+  title: "Developer Staff",
+  active: true,
 };
 
 const carerItems: CareerItem[] = [
+  ...(showOpenCode ? [openCodeItem] : []),
+  {
+    company: "Databricks",
+    date: "May 2025 - December 2025",
+    icon_url: "/images/databricks.png",
+    description: "Created technical content, tutorials, and demos focused on conventions and video production to educate developers on Databricks' data and AI platform. Engaged with the developer community through workshops, conferences, and social media. Gathered feedback to improve product features and documentation. Collaborated with engineering teams to ensure developer needs were addressed in product development.",
+    title: "Member of Technical Staff",
+    active: false,
+  },
   {
     company: "Neon Postgres",
-    date: "April 2025 - Present",
+    date: "April 2025 - May 2025",
     icon_url: "/images/neon.png",
     description: "Advocated for Neon's serverless Postgres database by creating technical content, tutorials, and demos to educate developers. Engaged with the developer community through workshops, conferences, and social media. Gathered feedback to improve product features and documentation. Collaborated with engineering teams to ensure developer needs were addressed in product development.",
     title: "Developer Advocate",
@@ -49,16 +73,26 @@ type ProjectItem = {
   date: React.ReactNode;
   image_url: string;
   url: string;
+  active?: boolean;
 };
 
 const projectItems: ProjectItem[] = [
+  {
+    name: "Inbound",
+    description:
+      "Programmable email infrastructure for developers. Send, receive, reply, and thread within real mailboxes. Built for developers who need to handle transactional emails, support inboxes, and AI agents. Configure your domain's MX records and start routing emails to webhooks instantly.",
+    url: "https://inbound.new",
+    date: "December 2024 - Present",
+    image_url: "/images/inbound.png",
+    active: true,
+  },
   {
     name: "Mandarin 3D Prints",
     description:
       "Offering the most affordable online custom 3D printing service, Mandarin 3D Prints outperforms competitors by 50% in pricing. Achieved $50k in gross sales within the first year. Developed a custom slicing infrastructure to ensure fast, reliable service for instant quotes and seamless order fulfillment. Established key collaborations with Vercel, Mintlify, and React Miami.",
     url: "https://mandarin3d.com",
     date: "October 2023 - Present",
-    image_url: "/images/m3d-round.png",
+    image_url: "/images/m3d-logo.png",
   },
   {
     name: "TagTap - Customized Networking Badges",
@@ -89,6 +123,14 @@ const misc: Misc[] = [
   }
 ];
 
+const featuredTweetIds = [
+  "1883264567985504575",
+  "1920811957986214208",
+  "1930122145650356566",
+  "1987505818678493485",
+  "1914694062122107386",
+];
+
 
 export default function Home() {
   return (
@@ -100,37 +142,56 @@ export default function Home() {
               <div className="mb-2">
                 <div className="min-w-full flex-row justify-between hidden sm:flex">
                   <div className="flex flew-row items-center">
-                    <img src={item.icon_url as string} alt={item.company as string} className="h-5 inline-block mr-2" />
+                    <img 
+                      src={item.icon_url as string} 
+                      alt={item.company as string} 
+                      className="h-7 inline-block mr-2 bg-white p-1 rounded" 
+                    />
                     <HoverCard>
                       <HoverCardTrigger>
-                        <h3 className="font-bold">{item.company}</h3>
+                        <h3 className="font-bold text-lg">{item.company}</h3>
                       </HoverCardTrigger>
                       <HoverCardContent>
                         <div className="flex flex-row w-full">
-                          <img src={item.icon_url as string} alt={item.company as string} className="h-5 inline-block mr-2" />
+                          <img 
+                            src={item.icon_url as string} 
+                            alt={item.company as string} 
+                            className="h-7 inline-block mr-2 bg-white p-1 rounded" 
+                          />
                           <div className="flex flex-col">
-                            <h3 className="font-bold">{item.company}</h3>
+                            <h3 className="font-bold text-lg">{item.company}</h3>
                             <span>{item.date}</span>
                             <span>{item.description}</span>
                           </div>
                         </div>
                       </HoverCardContent>
                     </HoverCard>
-                    <span className="mx-2 font-bold">-</span>
-                    <span className="font-bold">{item.title}</span>
+                    <span className="mx-2 font-bold text-lg">-</span>
+                    <span className="font-bold text-lg">{item.title}</span>
+                    {item.active && (
+                      <Star className="ml-2 h-5 w-5 fill-yellow-400 text-yellow-400" />
+                    )}
                   </div>
                   <div>
-                    <span>{item.date}</span>
+                    <span className="text-lg">{item.date}</span>
                   </div>
                 </div>
                 <div className="flex flex-col sm:hidden justify-start">
-                  <div className="flex flew-row justify-start">
-                    <h3 className="font-bold">{item.company}</h3>
-                    <span className="mx-2 font-bold">-</span>
-                    <span className="font-bold">{item.title}</span>
+                  <div className="flex flew-row justify-start items-center">
+                    <img 
+                      src={item.icon_url as string} 
+                      alt={item.company as string} 
+                      className="h-6 inline-block mr-2 bg-white p-1 rounded" 
+                    />
+                    <h3 className="font-bold text-lg">{item.company}</h3>
+                    <span className="mx-2 font-bold text-lg">-</span>
+                    <span className="font-bold text-lg">{item.title}</span>
+                    {item.active && (
+                      <Star className="ml-2 h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    )}
                   </div>
                   <div>
-                    <span>{item.date}</span>
+                    <span className="text-lg">{item.date}</span>
                   </div>
                 </div>
               </div>
@@ -145,9 +206,17 @@ export default function Home() {
           {projectItems.map((item, index) => (
             <div key={index} className="py-4">
               <div className="min-w-full flex flex-row justify-between items-center mb-2">
-                <div className="flex flew-row">
+                <div className="flex flew-row items-center">
                   <a href={item.url} target="_blank" className="flex flex-row items-center">
-                    <Image src={item.image_url} alt={item.name as string} width={30} height={30} className="mr-2 rounded-md" />
+                    <Image 
+                      src={item.image_url} 
+                      alt={item.name as string} 
+                      width={30} 
+                      height={30} 
+                      className={`mr-2 rounded-md ${
+                        item.name !== "Mandarin 3D Prints" ? "bg-white p-1" : ""
+                      }`} 
+                    />
                     <h2
                       className="font-bold
                     hover:text-neutral-300
@@ -158,6 +227,9 @@ export default function Home() {
                       {item.name}
                     </h2>
                   </a>
+                  {item.active && (
+                    <Star className="ml-2 h-5 w-5 fill-yellow-400 text-yellow-400" />
+                  )}
                 </div>
                 <div>
                   <span>{item.date}</span>
@@ -166,6 +238,14 @@ export default function Home() {
               <span className="text-zinc-400">{item.description}</span>
             </div>
           ))}
+        </section>
+        <section className="text-left w-full flex gap-4 flex-col mt-4 py-4 border-t-2 border-zinc-800 rounded-e-md">
+          <h2 className="text-xl font-bold">Featured Videos</h2>
+          <div className="flex flex-col gap-6">
+            {featuredTweetIds.map((tweetId) => (
+              <TweetVideo key={tweetId} tweetId={tweetId} />
+            ))}
+          </div>
         </section>
         <section className="text-left w-full flex gap-4 flex-col mt-4 py-4 border-t-2 border-zinc-800 rounded-e-md">
           <h2 className="text-xl font-bold">Past Projects</h2>

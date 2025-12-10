@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "@fontsource/apfel-grotezk"; // Defaults to weight 400
 import { Inter } from "next/font/google";
 import { GeistSans } from 'geist/font/sans';
@@ -11,7 +12,7 @@ import Image from "next/image";
 import LightChromeButton, { DarkChromeButton } from "@/components/chrome-button";
 import LightChromeCard from "@/components/chrome-card";
 import { Toaster } from "@/components/ui/sonner";
-import Script from 'next/script'
+import CircuitBoard from "@/components/CircuitBoard";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -29,6 +30,18 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark antialiased">
       <head>
+        {process.env.NODE_ENV === "development" && (
+          <>
+            <Script
+              src="//unpkg.com/react-grab/dist/index.global.js"
+              strategy="beforeInteractive"
+            />
+            <Script
+              src="//unpkg.com/@react-grab/opencode/dist/client.global.js"
+              strategy="lazyOnload"
+            />
+          </>
+        )}
         <Script
           id="datafa-script"
           defer
@@ -38,18 +51,20 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={`${inter.className} ${GeistSans.variable} ${GeistMono.variable}`}>
-        <main className="flex text-white min-h-screen flex-col items-center min-w-full p-4 bg-gradient-to-r from-[#8458B3] via-[#D0BDF4] to-[#A0D2EB] relative isolate">
-          <div className="absolute inset-0 -z-10 h-full w-full bg-zinc-950/90">
-            <div className="absolute h-full w-full bg-[url('/images/noise-light.png')] [mask-image:radial-gradient(farthest-side_at_top,white,transparent)] opacity-100" />
+        <main className="flex text-white min-h-screen flex-col items-center min-w-full p-4 bg-gradient-to-br from-[#8458B3] via-[#D0BDF4] to-[#A0D2EB] relative isolate">
+          <div className="absolute inset-0 -z-10 h-full w-full bg-zinc-950">
+            <div className="absolute inset-0 bg-[url('/images/noise-light.png')] opacity-[0.35]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.25)_0%,transparent_70%)]" />
+            <CircuitBoard />
           </div>
           <div className="max-w-3xl w-full ">
-            <section className="py-4 sm:py-10 flex flex-row justify-between">
+            <section className="py-6 sm:py-12 flex flex-row justify-between">
               <a href="/">
                 <div className="flex flex-row items-center">
-                  <Image src="/images/rlogo.png" alt="Ryan Vogel" width={30} height={30} className="mr-2" />
+                  <img src="https://pbs.twimg.com/profile_images/1995572556124794880/O96_v3vX_400x400.jpg" alt="Ryan Vogel" width={48} height={48} className="mr-3 rounded-sm" />
                   <div className="flex flex-col">
-                    <h1 className="font-bold text-xl p-0 m-0 ">Ryan Vogel</h1>
-                    <span className="text-neutral-200 p-0 m-0">Founder, Software Engineer & Integration Specialist</span>
+                    <h1 className="font-bold text-2xl p-0 m-0">Ryan Vogel</h1>
+                    <span className="text-neutral-200 p-0 m-0 text-base">Founder, Software Engineer & Integration Specialist</span>
                   </div>
                 </div>
               </a>

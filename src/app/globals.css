@@ -103,6 +103,37 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    overscroll-behavior-y: none;
+  }
+  
+  body {
+    overscroll-behavior-y: none;
+  }
+  
+  /* YouTube lite embed full width */
+  lite-youtube {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .lyt-playbtn {
+    width: 100% !important;
+  }
+  
+  /* Tweet embed styling */
+  .tweet-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .tweet-container > div {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  [data-theme="dark"] .react-tweet-theme {
+    --tweet-bg-color: rgb(24 24 27) !important;
+    --tweet-border: 1px solid rgb(39 39 42) !important;
   }
   
   /* Header styles with Geist SemiBold and -4% letter spacing */
@@ -111,4 +142,82 @@ body {
     font-weight: 600; /* SemiBold */
     letter-spacing: -0.04em; /* -4% letter spacing */
   }
+}
+
+/* Circuit board pulse animations */
+@keyframes pulse-1 {
+  0%, 100% { stroke-dashoffset: 1000; opacity: 0; }
+  10% { opacity: 1; }
+  50% { opacity: 1; }
+  60%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes pulse-2 {
+  0%, 100% { stroke-dashoffset: 800; opacity: 0; }
+  20% { opacity: 0; }
+  30% { opacity: 1; }
+  60% { opacity: 1; }
+  70%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes pulse-3 {
+  0%, 100% { stroke-dashoffset: 600; opacity: 0; }
+  40% { opacity: 0; }
+  50% { opacity: 1; }
+  70% { opacity: 1; }
+  80%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes pulse-4 {
+  0%, 100% { stroke-dashoffset: 900; opacity: 0; }
+  5% { opacity: 0; }
+  15% { opacity: 1; }
+  45% { opacity: 1; }
+  55%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes pulse-5 {
+  0%, 100% { stroke-dashoffset: 700; opacity: 0; }
+  25% { opacity: 0; }
+  35% { opacity: 1; }
+  55% { opacity: 1; }
+  65%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes glow-node {
+  0%, 100% { opacity: 0.2; filter: drop-shadow(0 0 2px rgba(139, 92, 246, 0.5)); }
+  50% { opacity: 0.8; filter: drop-shadow(0 0 8px rgba(139, 92, 246, 1)); }
+}
+
+.circuit-path-1 {
+  stroke-dasharray: 1000;
+  animation: pulse-1 8s ease-in-out infinite;
+}
+
+.circuit-path-2 {
+  stroke-dasharray: 800;
+  animation: pulse-2 10s ease-in-out infinite;
+}
+
+.circuit-path-3 {
+  stroke-dasharray: 600;
+  animation: pulse-3 7s ease-in-out infinite;
+}
+
+.circuit-path-4 {
+  stroke-dasharray: 900;
+  animation: pulse-4 9s ease-in-out infinite;
+}
+
+.circuit-path-5 {
+  stroke-dasharray: 700;
+  animation: pulse-5 11s ease-in-out infinite;
+}
+
+.circuit-node {
+  animation: glow-node 4s ease-in-out infinite;
+}
+
+.circuit-node-delayed {
+  animation: glow-node 4s ease-in-out infinite 2s;
 }
