@@ -4,6 +4,8 @@ import Image from "next/image";
 import React from "react";
 import { Star } from "lucide-react";
 import TweetVideo from "@/components/TweetVideo";
+import BlogList from "@/components/BlogList";
+import { getAllPosts } from "@/lib/blog";
 
 type CareerItem = {
   company: React.ReactNode;
@@ -15,7 +17,7 @@ type CareerItem = {
 };
 
 // OpenCode career item - only show after December 25th, 2025
-const showOpenCode = new Date() >= new Date('2025-12-25');
+const showOpenCode = new Date() >= new Date('2026-01-19');
 
 const openCodeItem: CareerItem = {
   company: "OpenCode",
@@ -133,8 +135,14 @@ const featuredTweetIds = [
 
 
 export default function Home() {
+  const posts = getAllPosts();
+  
   return (
     <div>
+      <section className="text-left w-full flex gap-4 flex-col mb-4 pb-4 border-b-2 border-zinc-800">
+        <h2 className="text-xl font-bold">Blog</h2>
+        <BlogList posts={posts} />
+      </section>
       <section className="text-left w-full flex gap-4 flex-col">
           <h2 className="text-xl font-bold">Career</h2>
           {carerItems.map((item, index) => (

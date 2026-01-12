@@ -21,6 +21,7 @@
     "clsx": "^2.1.0",
     "dotenv-cli": "^8.0.0",
     "geist": "^1.5.1",
+    "gray-matter": "^4.0.3",
     "html-to-image": "^1.11.11",
     "lucide-react": "^0.309.0",
     "next": "^16.0.0",
@@ -31,6 +32,8 @@
     "react-social-icons": "^6.18.0",
     "react-tweet": "^3.2.2",
     "recharts": "^2.15.0",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7"

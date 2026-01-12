@@ -1,70 +1,66 @@
-import { DarkChromeCard } from "@/components/chrome-card";
-import { Metadata } from "next";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { notFound } from "next/navigation";
+import { notFound } from 'next/navigation';
+import { getPostBySlug, getAllPosts } from '@/lib/blog';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 
-// In a real app, this would be dynamic based on the actual post
-export const metadata: Metadata = {
-  title: "Blog Post | Ryan Vogel",
-  description: "A blog post by Ryan Vogel",
+type Props = {
+  params: Promise<{ slug: string }>;
 };
 
-// This would typically come from your database/CMS
-const getBlogPost = (slug: string) => {
-  const posts = {
-    "getting-started-with-nextjs": {
-      title: "Getting Started with Next.js",
-      date: "2024-03-20",
-      content: `
-        This is where your blog post content would go. You can include:
-        
-        - Markdown content
-        - Code snippets
-        - Images
-        - And more!
-        
-        In a real application, this would likely be stored in a database or CMS
-        and possibly written in MDX format.
-      `,
-    },
+export async function generateStaticParams() {
+  const posts = getAllPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+  
+  if (!post) {
+    return { title: 'Post Not Found' };
+  }
+
+  return {
+    title: `${post.title} | Ryan Vogel`,
+    description: post.excerpt,
   };
+}
 
-  return posts[slug as keyof typeof posts];
-};
-
-export default function BlogPost({ params }: { params: { slug: string } }) {
-  const post = getBlogPost(params.slug);
+export default async function BlogPostPage({ params }: Props) {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
   return (
-    <>
+    <article className="w-full">
       <Link 
-        href="/blog" 
-        className="inline-flex items-center text-neutral-400 hover:text-white mb-8 transition-colors"
+        href="/" 
+        className="inline-flex items-center gap-2 text-zinc-400 hover:text-white mb-6 transition-colors"
       >
-        <ArrowLeft className="mr-2" /> Back to Blog
+        <ArrowLeft className="w-4 h-4" />
+        Back to home
       </Link>
+      
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
+        <time className="text-zinc-500">
+          {new Date(post.date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </time>
+      </header>
 
-      <DarkChromeCard className="max-w-4xl mx-auto">
-        <article>
-          <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
-          <p className="text-neutral-400 mb-8">
-            {new Date(post.date).toLocaleDateString()}
-          </p>
-          
-          <div className="prose prose-invert max-w-none">
-            {post.content.split('\n').map((paragraph, index) => (
-              <p key={index} className="mb-4">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </article>
-      </DarkChromeCard>
-    </>
+      <div 
+        className="prose prose-invert prose-zinc max-w-none prose-headings:text-white prose-a:text-purple-400 prose-a:no-underline hover:prose-a:underline prose-code:text-purple-300 prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800"
+        dangerouslySetInnerHTML={{ __html: post.content || '' }} 
+      />
+    </article>
   );
-} 
+}

@@ -53,15 +53,15 @@ export default function RootLayout({
       <body className={`${inter.className} ${GeistSans.variable} ${GeistMono.variable}`}>
         <main className="flex text-white min-h-screen flex-col items-center min-w-full p-4 bg-gradient-to-br from-[#8458B3] via-[#D0BDF4] to-[#A0D2EB] relative isolate">
           <div className="absolute inset-0 -z-10 h-full w-full bg-zinc-950">
-            <div className="absolute inset-0 bg-[url('/images/noise-light.png')] opacity-[0.35]" />
+            <div className="absolute inset-0 bg-[url('/images/noise-light.png')] bg-[length:100px_100px] opacity-[0.35]" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.25)_0%,transparent_70%)]" />
-            <CircuitBoard />
+            {/* <CircuitBoard /> */}
           </div>
           <div className="max-w-3xl w-full ">
             <section className="py-6 sm:py-12 flex flex-row justify-between">
               <a href="/">
                 <div className="flex flex-row items-center">
-                  <img src="https://pbs.twimg.com/profile_images/1995572556124794880/O96_v3vX_400x400.jpg" alt="Ryan Vogel" width={48} height={48} className="mr-3 rounded-sm" />
+                  <img src="https://unavatar.io/x/ryanvogel" alt="Ryan Vogel" width={48} height={48} className="mr-3 rounded-sm" />
                   <div className="flex flex-col">
                     <h1 className="font-bold text-2xl p-0 m-0">Ryan Vogel</h1>
                     <span className="text-neutral-200 p-0 m-0 text-base">Founder, Software Engineer & Integration Specialist</span>
