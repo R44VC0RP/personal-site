@@ -52,13 +52,15 @@ export default function OpenCodePage() {
     <section className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">
         <div className="flex items-center gap-4">
-          <Image
-            src="/images/opencode-logo-light.png"
-            alt="OpenCode"
-            width={48}
-            height={48}
-            className="rounded-lg"
-          />
+          <span className="w-12 h-12 flex items-center justify-center bg-zinc-800 p-2 rounded-lg">
+            <Image
+              src="/images/opencode-logo-light.png"
+              alt="OpenCode"
+              width={48}
+              height={48}
+              className="object-contain w-full h-full"
+            />
+          </span>
           <div>
             <h1 className="text-2xl font-bold">OpenCode Projects</h1>
             <p className="text-zinc-400">Tools and projects I've built for the OpenCode ecosystem</p>

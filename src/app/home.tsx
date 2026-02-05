@@ -4,8 +4,7 @@ import Image from "next/image";
 import React from "react";
 import { Star } from "lucide-react";
 import TweetVideo from "@/components/TweetVideo";
-import BlogList from "@/components/BlogList";
-import { getAllPosts } from "@/lib/blog";
+import MyStory from "@/components/MyStory";
 
 type CareerItem = {
   company: React.ReactNode;
@@ -14,10 +13,8 @@ type CareerItem = {
   date: React.ReactNode;
   description: React.ReactNode;
   active?: boolean;
+  id?: string;
 };
-
-// OpenCode career item - only show after December 25th, 2025
-const showOpenCode = new Date() >= new Date('2026-01-19');
 
 const openCodeItem: CareerItem = {
   company: "OpenCode",
@@ -26,10 +23,11 @@ const openCodeItem: CareerItem = {
   description: "Contributing to the open source AI coding agent used by over 400,000 developers monthly. OpenCode helps developers write and run code directly from the terminal with a native TUI, LSP support, multi-session capabilities, and integration with 75+ LLM providers. Working on features, documentation, and community engagement for this privacy-first development tool.",
   title: "Developer Staff",
   active: true,
+  id: "opencode",
 };
 
 const carerItems: CareerItem[] = [
-  ...(showOpenCode ? [openCodeItem] : []),
+  openCodeItem,
   {
     company: "Databricks",
     date: "May 2025 - December 2025",
@@ -37,6 +35,7 @@ const carerItems: CareerItem[] = [
     description: "Created technical content, tutorials, and demos focused on conventions and video production to educate developers on Databricks' data and AI platform. Engaged with the developer community through workshops, conferences, and social media. Gathered feedback to improve product features and documentation. Collaborated with engineering teams to ensure developer needs were addressed in product development.",
     title: "Member of Technical Staff",
     active: false,
+    id: "databricks",
   },
   {
     company: "Neon Postgres",
@@ -44,6 +43,7 @@ const carerItems: CareerItem[] = [
     icon_url: "/images/neon.png",
     description: "Advocated for Neon's serverless Postgres database by creating technical content, tutorials, and demos to educate developers. Engaged with the developer community through workshops, conferences, and social media. Gathered feedback to improve product features and documentation. Collaborated with engineering teams to ensure developer needs were addressed in product development.",
     title: "Developer Advocate",
+    id: "neon-postgres",
   },
   {
     company: "City of Neptune Beach",
@@ -51,6 +51,7 @@ const carerItems: CareerItem[] = [
     icon_url: "/images/neptune-beach.png",
     description: "Managed critical infrastructure including camera and security access control systems. Administered Windows Active Directory and domain services. Handled news publication and media management. Oversaw multi-million dollar departmental budget and acted as interim CIO. Maintained live streaming capabilities for public meetings and managed standard IT ticketing system for city-wide technical support.",
     title: "Systems Administrator",
+    id: "neptune-beach",
   },
   {
     company: "Best Buy | Geek Squad",
@@ -58,6 +59,7 @@ const carerItems: CareerItem[] = [
     icon_url: "/images/geek-squad.png",
     description: "Performed advanced diagnostics and repairs on a wide range of consumer electronics including computers, smartphones, and tablets. Managed complex technical issues, provided expert customer service, and maintained repair documentation while meeting quality and efficiency standards in a fast-paced retail environment.",
     title: "Advanced Repair Agent II",
+    id: "geek-squad",
   },
   {
     company: "Sensible Recycling",
@@ -65,6 +67,7 @@ const carerItems: CareerItem[] = [
     icon_url: "/images/reuse-it.png",
     description: "Specialized in electronics recycling, performing diagnostics and refurbishment of laptops, smartphones, and computers. Developed skills in hardware repair, data recovery, and operating system restoration while maintaining environmental sustainability standards.",
     title: "Software Engineer & Technician",
+    id: "sensible-recycling",
   }
 
 ];
@@ -76,6 +79,7 @@ type ProjectItem = {
   image_url: string;
   url: string;
   active?: boolean;
+  id?: string;
 };
 
 const projectItems: ProjectItem[] = [
@@ -87,6 +91,7 @@ const projectItems: ProjectItem[] = [
     date: "December 2024 - Present",
     image_url: "/images/inbound.png",
     active: true,
+    id: "inbound",
   },
   {
     name: "Mandarin 3D Prints",
@@ -95,6 +100,7 @@ const projectItems: ProjectItem[] = [
     url: "https://mandarin3d.com",
     date: "October 2023 - Present",
     image_url: "/images/m3d-logo.png",
+    id: "mandarin-3d-prints",
   },
   {
     name: "TagTap - Customized Networking Badges",
@@ -103,6 +109,7 @@ const projectItems: ProjectItem[] = [
     url: "https://tagtap.com",
     date: "December 2024 - Present",
     image_url: "/images/tagtap.png",
+    id: "tagtap",
   },
 ];
 
@@ -135,37 +142,36 @@ const featuredTweetIds = [
 
 
 export default function Home() {
-  const posts = getAllPosts();
-  
   return (
     <div>
-      <section className="text-left w-full flex gap-4 flex-col mb-4 pb-4 border-b-2 border-zinc-800">
-        <h2 className="text-xl font-bold">Blog</h2>
-        <BlogList posts={posts} />
-      </section>
+      <MyStory />
       <section className="text-left w-full flex gap-4 flex-col">
           <h2 className="text-xl font-bold">Career</h2>
           {carerItems.map((item, index) => (
-            <div key={index}>
+            <div key={index} id={item.id}>
               <div className="mb-2">
                 <div className="min-w-full flex-row justify-between hidden sm:flex">
                   <div className="flex flew-row items-center">
-                    <img 
-                      src={item.icon_url as string} 
-                      alt={item.company as string} 
-                      className="h-7 inline-block mr-2 bg-white p-1 rounded" 
-                    />
+                    <span className="w-7 h-7 inline-flex items-center justify-center mr-2 bg-white p-1 rounded">
+                      <img 
+                        src={item.icon_url as string} 
+                        alt={item.company as string} 
+                        className="object-contain w-full h-full" 
+                      />
+                    </span>
                     <HoverCard>
                       <HoverCardTrigger>
                         <h3 className="font-bold text-lg">{item.company}</h3>
                       </HoverCardTrigger>
                       <HoverCardContent>
                         <div className="flex flex-row w-full">
-                          <img 
-                            src={item.icon_url as string} 
-                            alt={item.company as string} 
-                            className="h-7 inline-block mr-2 bg-white p-1 rounded" 
-                          />
+                          <span className="w-7 h-7 inline-flex items-center justify-center mr-2 bg-white p-1 rounded">
+                            <img 
+                              src={item.icon_url as string} 
+                              alt={item.company as string} 
+                              className="object-contain w-full h-full" 
+                            />
+                          </span>
                           <div className="flex flex-col">
                             <h3 className="font-bold text-lg">{item.company}</h3>
                             <span>{item.date}</span>
@@ -186,11 +192,13 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col sm:hidden justify-start">
                   <div className="flex flew-row justify-start items-center">
-                    <img 
-                      src={item.icon_url as string} 
-                      alt={item.company as string} 
-                      className="h-6 inline-block mr-2 bg-white p-1 rounded" 
-                    />
+                    <span className="w-6 h-6 inline-flex items-center justify-center mr-2 bg-white p-1 rounded">
+                      <img 
+                        src={item.icon_url as string} 
+                        alt={item.company as string} 
+                        className="object-contain w-full h-full" 
+                      />
+                    </span>
                     <h3 className="font-bold text-lg">{item.company}</h3>
                     <span className="mx-2 font-bold text-lg">-</span>
                     <span className="font-bold text-lg">{item.title}</span>
@@ -212,7 +220,7 @@ export default function Home() {
         <section className="text-left w-full flex gap-4 flex-col mt-4 py-4 border-t-2 border-zinc-800 rounded-e-md">
           <h2 className="text-xl font-bold">Businesses and Projects</h2>
           {projectItems.map((item, index) => (
-            <div key={index} className="py-4">
+            <div key={index} id={item.id} className="py-4">
               <div className="min-w-full flex flex-row justify-between items-center mb-2">
                 <div className="flex flew-row items-center">
                   <a href={item.url} target="_blank" className="flex flex-row items-center">
