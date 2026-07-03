@@ -51,7 +51,7 @@ export default function Invest() {
     return (
         <section className="min-h-screen">
             <div className="flex flex-col items-center max-w-4xl mx-auto px-4 py-12">
-                <h1 className="text-4xl font-bold mb-6 text-center text-white">Invest in <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">@ryandavogel</span></h1>
+                <h1 className="text-4xl font-bold mb-6 text-center text-white">Invest in <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">@ryanvogel</span></h1>
 
                 <div className="w-full max-w-2xl mx-auto mb-8">
                     <h2 className="text-2xl font-bold mb-4 text-center text-white">Top Investors</h2>

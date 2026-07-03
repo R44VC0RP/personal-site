@@ -78,7 +78,7 @@ export default function RootLayout({
                   <GitHub />
                 </a>
                 <a
-                  href="https://x.com/ryandavogel"
+                  href="https://x.com/ryanvogel"
                   target="_blank"
                   className="fill-current hover:fill-neutral-300"
                   aria-label="Twitter"
