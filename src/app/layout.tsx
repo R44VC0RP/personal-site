@@ -111,7 +111,7 @@ export default function RootLayout({
                     className="flex size-11 items-center justify-center rounded-lg fill-current transition-[background-color,transform] duration-150 hover:bg-white/10 active:scale-[0.96]"
                     aria-label="Ryan Vogel on X"
                   >
-                    <img src="/images/x-logo.png" alt="X Logo" width={24} height={24} className="invert" />
+                    <img src="/images/x-logo.png" alt="X Logo" width={24} height={24} />
                   </a>
                   <a className="flex size-11 items-center justify-center rounded-lg fill-current transition-[background-color,transform] duration-150 hover:bg-white/10 active:scale-[0.96]" href="/resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download Ryan Vogel's resume">
                     <HardDriveDownload height={24} width={24} />
