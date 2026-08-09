@@ -18,6 +18,15 @@ Primary target: own the `Ryan Vogel` entity query with `https://ryan.ceo` as the
 - Added unique metadata, crawl rules, sitemap generation, social cards, and internal navigation.
 - Replaced nonexistent blog links with the real Markdown posts.
 - Removed the Google-hosted Inter build dependency and standardized the site on self-hosted Geist.
+- Added an incremental X archive, editorial ranking, and selected-media extraction workflow.
+
+## X-to-article workflow
+
+1. Run `npm run x:import` to fetch only posts newer than the local archive. Use `npm run x:import -- --full` only when intentionally refreshing the 3,200-post window.
+2. Run `npm run x:rank` to create a private candidate pool based on engagement, substance, originality, and attached media.
+3. Review candidates editorially. Reject jokes, engagement bait, generic promotion, contextless replies, and ideas that cannot support a durable first-hand article.
+4. Run `npm run x:media -- <post-id>` only for approved candidates, then write an unpublished draft that links to every source post.
+5. Publish after human review with a truthful publication date, original context beyond the source posts, and a self-referencing canonical URL.
 
 ## Next queue
 
@@ -39,3 +48,4 @@ Primary target: own the `Ryan Vogel` entity query with `https://ryan.ceo` as the
 - No bought links, keyword stuffing, doorway pages, fake reviews, hidden text, or mass-generated articles.
 - Keep dates truthful; only update `dateModified` after meaningful human edits.
 - Prefer a small number of original, attributable pages over daily filler.
+- Never treat engagement as editorial approval or publish one thin article per post.

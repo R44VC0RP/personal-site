@@ -6,7 +6,10 @@
     "dev": "npx @react-grab/opencode@latest && next dev",
     "build": "next build --webpack",
     "start": "next start",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "x:import": "dotenv -e .env.local -- node scripts/import-x-posts.mjs",
+    "x:rank": "node scripts/rank-x-posts.mjs",
+    "x:media": "node scripts/download-x-media.mjs"
   },
   "dependencies": {
     "@fontsource/apfel-grotezk": "^5.1.0",
