@@ -9,7 +9,8 @@
     "postinstall": "prisma generate",
     "x:import": "dotenv -e .env.local -- node scripts/import-x-posts.mjs",
     "x:rank": "node scripts/rank-x-posts.mjs",
-    "x:media": "node scripts/download-x-media.mjs"
+    "x:media": "node scripts/download-x-media.mjs",
+    "blog:validate": "node scripts/validate-blog-posts.mjs"
   },
   "dependencies": {
     "@fontsource/apfel-grotezk": "^5.1.0",
