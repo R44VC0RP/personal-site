@@ -7,7 +7,6 @@ import { GeistMono } from 'geist/font/mono';
 import "./globals.css";
 import { HardDriveDownload } from "lucide-react";
 import { GitHub } from "./icons";
-import Image from "next/image";
 import { Toaster } from "@/components/ui/sonner";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL, SOCIAL_LINKS } from "@/lib/site";
 
@@ -85,17 +84,17 @@ export default function RootLayout({
           </div>
           <div className="max-w-3xl w-full ">
             <header className="py-6 sm:py-12">
-              <div className="flex flex-row justify-between gap-4">
-                <Link href="/" aria-label="Ryan Vogel home">
+              <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:gap-4">
+                <Link href="/" aria-label="Ryan Vogel home" className="min-w-0">
                   <div className="flex flex-row items-center">
                     <img src="https://unavatar.io/x/ryanvogel" alt="Ryan Vogel" width={48} height={48} className="mr-3 rounded-sm outline outline-1 -outline-offset-1 outline-white/10" />
-                    <div className="flex flex-col">
+                    <div className="flex min-w-0 flex-col">
                       <h1 className="font-bold text-2xl p-0 m-0">Ryan Vogel</h1>
-                      <span className="text-neutral-200 p-0 m-0 text-base">Founder, Software Engineer & Integration Specialist</span>
+                      <span className="text-sm text-neutral-200 p-0 m-0 sm:text-base">Founding Developer at OpenCode</span>
                     </div>
                   </div>
                 </Link>
-                <div className="flex gap-1 sm:gap-2 items-center" aria-label="Ryan Vogel profiles and resume">
+                <div className="flex self-end gap-1 sm:self-auto sm:gap-2 items-center" aria-label="Ryan Vogel profiles and resume">
                   <a
                     href={SOCIAL_LINKS.github}
                     target="_blank"
@@ -112,28 +111,13 @@ export default function RootLayout({
                     className="flex size-11 items-center justify-center rounded-lg fill-current transition-[background-color,transform] duration-150 hover:bg-white/10 active:scale-[0.96]"
                     aria-label="Ryan Vogel on X"
                   >
-                    <Image src="/images/x-logo.png" alt="X Logo" width={24} height={24} />
+                    <img src="/images/x-logo.png" alt="X Logo" width={24} height={24} className="invert" />
                   </a>
                   <a className="flex size-11 items-center justify-center rounded-lg fill-current transition-[background-color,transform] duration-150 hover:bg-white/10 active:scale-[0.96]" href="/resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download Ryan Vogel's resume">
                     <HardDriveDownload height={24} width={24} />
                   </a>
                 </div>
               </div>
-              <nav aria-label="Primary" className="mt-5 flex flex-wrap gap-1 border-t border-white/10 pt-3">
-                {[
-                  ["About", "/"],
-                  ["Writing", "/blog"],
-                  ["OpenCode projects", "/opencode"],
-                ].map(([label, href]) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    className="flex min-h-11 items-center rounded-lg px-3 text-sm font-medium text-zinc-300 transition-[color,background-color,transform] duration-150 hover:bg-white/10 hover:text-white active:scale-[0.96]"
-                  >
-                    {label}
-                  </Link>
-                ))}
-              </nav>
             </header>
             {children}
           </div>

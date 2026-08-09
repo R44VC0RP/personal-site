@@ -21,7 +21,7 @@ const openCodeItem: CareerItem = {
   date: "December 2025 - Present",
   icon_url: "/images/opencode-logo-light.png",
   description: "Contributing to the open source AI coding agent used by over 400,000 developers monthly. OpenCode helps developers write and run code directly from the terminal with a native TUI, LSP support, multi-session capabilities, and integration with 75+ LLM providers. Working on features, documentation, and community engagement for this privacy-first development tool.",
-  title: "Developer Staff",
+  title: "Founding Developer",
   active: true,
   id: "opencode",
 };
@@ -92,24 +92,6 @@ const projectItems: ProjectItem[] = [
     image_url: "/images/inbound.png",
     active: true,
     id: "inbound",
-  },
-  {
-    name: "Mandarin 3D Prints",
-    description:
-      "Offering the most affordable online custom 3D printing service, Mandarin 3D Prints outperforms competitors by 50% in pricing. Achieved $50k in gross sales within the first year. Developed a custom slicing infrastructure to ensure fast, reliable service for instant quotes and seamless order fulfillment. Established key collaborations with Vercel, Mintlify, and React Miami.",
-    url: "https://mandarin3d.com",
-    date: "October 2023 - Present",
-    image_url: "/images/m3d-logo.png",
-    id: "mandarin-3d-prints",
-  },
-  {
-    name: "TagTap - Customized Networking Badges",
-    description:
-      "TagTap offers customized NFC tags with your social profile that you can easily share at conventions and networking events. Create personalized digital business cards that allow instant connection with a simple tap.",
-    url: "https://tagtap.com",
-    date: "December 2024 - Present",
-    image_url: "/images/tagtap.png",
-    id: "tagtap",
   },
 ];
 
@@ -229,9 +211,7 @@ export default function Home() {
                       alt={item.name as string} 
                       width={30} 
                       height={30} 
-                      className={`mr-2 rounded-md ${
-                        item.name !== "Mandarin 3D Prints" ? "bg-white p-1" : ""
-                      }`} 
+                      className="mr-2 rounded-md bg-white p-1 outline outline-1 -outline-offset-1 outline-black/10 dark:outline-white/10"
                     />
                     <h2
                       className="font-bold

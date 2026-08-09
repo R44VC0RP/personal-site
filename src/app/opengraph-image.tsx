@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Ryan Vogel — Software Engineer & Founder";
+export const alt = "Ryan Vogel — Founding Developer at OpenCode";
 export const size = {
   width: 1200,
   height: 630,
@@ -55,7 +55,7 @@ export default function OpenGraphImage() {
               lineHeight: 1.25,
             }}
           >
-            Software engineer, founder, and developer-tool creator
+            Founding Developer at OpenCode
           </div>
         </div>
       </div>

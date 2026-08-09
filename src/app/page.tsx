@@ -46,7 +46,7 @@ const profileStructuredData = {
       alternateName: "@ryanvogel",
       url: SITE_URL,
       description: SITE_DESCRIPTION,
-      jobTitle: ["Software Engineer", "Founder", "Integration Specialist"],
+      jobTitle: "Founding Developer",
       worksFor: {
         "@type": "Organization",
         name: "OpenCode",

@@ -91,7 +91,8 @@ const companies = {
   mandarin3d: {
     name: "Mandarin 3D",
     logo: "/images/m3d-logo.png",
-    href: "#mandarin-3d-prints",
+    href: "https://mandarin3d.com",
+    external: true,
     noLogoBg: true,
   },
   sensibleRecycling: {
@@ -144,6 +145,13 @@ const external = {
     name: "Next.js Conf 2025",
     logo: "/images/youtube-logo.png",
     href: "https://www.youtube.com/watch?v=F8c6tgJ1Qqs&list=PLBnKlKpPeagkc4H_987rIiRt3Mkb9HrMp&index=9",
+    external: true,
+    noLogoBg: true,
+  },
+  rebaseTv: {
+    name: "Rebase TV",
+    logo: "/images/rebase-tv.png",
+    href: "https://rebase.tv",
     external: true,
     noLogoBg: true,
   },
@@ -212,7 +220,11 @@ export default function MyStory() {
         <p>
           I had a great time going to conventions and networking, as well as giving my first ever talk at{" "}
           <StoryBadge {...external.nextjsConf} />, which went pretty well. In January of 2026, I joined{" "}
-          <StoryBadge {...companies.opencode} />, an agentic coding tool that allows developers to use AI to become more effective. Next up is.....
+          <StoryBadge {...companies.opencode} /> as a <span className="font-bold underline">Founding Developer</span>, helping build an agentic coding tool that allows developers to use AI more effectively.
+        </p>
+
+        <p>
+          I then became the host of <StoryBadge {...external.rebaseTv} />, an HQ Trivia-style live game show where players answer questions in real time for cash prizes.
         </p>
       </div>
     </section>
