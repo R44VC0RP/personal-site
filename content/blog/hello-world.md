@@ -4,8 +4,6 @@ date: "2025-01-10"
 excerpt: "Welcome to my blog! This is my first post where I share my thoughts on software engineering and building products."
 ---
 
-# Hello World
-
 Welcome to my blog! I'm excited to start sharing my thoughts, experiences, and learnings from my journey in software engineering and entrepreneurship.
 
 ## What to Expect

@@ -2,10 +2,20 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { ExternalLink, Terminal, GitBranch, Search, Sparkles } from "lucide-react";
 import GlassMorphicCard from "@/components/GlassMorphicCard";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "OpenCode Projects | Ryan Vogel",
+  title: "OpenCode Projects",
   description: "Projects and tools I've built for the OpenCode ecosystem - AI-powered developer tools",
+  alternates: {
+    canonical: "/opencode",
+  },
+  openGraph: {
+    title: "OpenCode Projects by Ryan Vogel",
+    description: "AI-powered developer tools Ryan Vogel built for the OpenCode ecosystem.",
+    url: `${SITE_URL}/opencode`,
+    type: "website",
+  },
 };
 
 type OpenCodeProject = {
